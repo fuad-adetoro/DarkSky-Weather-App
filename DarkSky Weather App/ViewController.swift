@@ -19,16 +19,16 @@ class ViewController: UIViewController {
     
     // Mark: Refresh button action
     @IBAction func refreshClicked(_ sender: Any) {
+        hideRefreshButton()
         fetchWeather()
     }
     
-    // Mark: HomeWeatherDisplayCell ib file owner object
+    // Mark: HomeWeatherDisplayCell Nib file owner object
     let homeWeatherDisplayCellNib = Bundle.main.loadNibNamed("HomeWeatherDisplayViewCell", owner: HomeWeatherDisplayViewCell.self, options: nil)! as NSArray
     
     let cellId = "HomeWeatherDisplayViewCell"
     
     // Mark: Model Variables
-    let client = DarkSkyAPIClient()
     let weatherManager = WeatherManager()
     let locationManager = LocationManager()
     

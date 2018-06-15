@@ -8,10 +8,10 @@
 
 import Foundation
 
-typealias WeatherManagerNotification = ([CurrentWeatherViewModel], Error?) -> Void
+typealias WeatherManagerCompletion = ([CurrentWeatherViewModel], Error?) -> Void
 
 class WeatherManager {
-    func fetchWeather(with locations: [Location], completion: @escaping WeatherManagerNotification) {
+    func fetchWeather(with locations: [Location], completion: @escaping WeatherManagerCompletion) {
         let darkSkyAPIClient = DarkSkyAPIClient()
         
         let dispatchGroup = DispatchGroup()
