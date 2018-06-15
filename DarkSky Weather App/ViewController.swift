@@ -22,13 +22,15 @@ class ViewController: UIViewController {
         fetchWeather()
     }
     
-    // Mark: HomeWeatherDisplayCell nib file owner object
-    let homeWeatherDisplayCellNib = Bundle.main.loadNibNamed("HomeWeatherDisplayViewCell", owner: HomeWeatherDisplayViewCell.self, options: nil) as! NSArray
+    // Mark: HomeWeatherDisplayCell ib file owner object
+    let homeWeatherDisplayCellNib = Bundle.main.loadNibNamed("HomeWeatherDisplayViewCell", owner: HomeWeatherDisplayViewCell.self, options: nil)! as NSArray
     
     let cellId = "HomeWeatherDisplayViewCell"
     
     // Mark: Model Variables
     let client = DarkSkyAPIClient()
+    let weatherManager = WeatherManager()
+    let locationManager = LocationManager()
     
     // Mark: Locations and CurrentWeatherViewModel array
     var locations: [Location] = []
@@ -44,76 +46,23 @@ class ViewController: UIViewController {
         configureCollectionView()
         createLocations()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     func createLocations() {
-        // Create Location London
-        createLocation(with: Coordinate(latitude: 51.5239227, longitude: -0.0844997), name: "London")
-        
-        // Create Location Paris
-        createLocation(with: Coordinate(latitude: 48.858612, longitude: 2.342251), name: "Paris")
-        
-        // Create Location New York
-        createLocation(with: Coordinate(latitude: 40.783512, longitude: -73.820419), name: "New York")
-        
-        // Create Location Los Angeles
-        createLocation(with: Coordinate(latitude: 34.036095, longitude: -118.248354), name: "Los Angeles")
-        
-        // Create Location Tokyo
-        createLocation(with: Coordinate(latitude: 35.679955, longitude: 139.843587), name: "Tokyo")
+        self.locations = locationManager.createLocations()
         
         fetchWeather()
     }
     
-    func createLocation(with coordinate: Coordinate, name: String) {
-        let location = Location(name: name, coordinate: coordinate)
-        
-        var canAppend = true
-        
-        for loc in locations {
-            if loc.name == location.name {
-                canAppend = false
-            }
-        }
-        
-        if canAppend {
-            locations.append(location)
-        }
-    }
-    
     func fetchWeather() {
-        // Resetting currentWeatherViewModels array everytime the function calls
         currentWeatherViewModels = []
         
         disableCollectionView()
         startActivityIndicator()
         
-        var error: DarkSkyError!
-        
-        let dispatchGroup = DispatchGroup()
-        
-        for location in locations {
-            dispatchGroup.enter()
-            client.getCurrentWeather(at: location.coordinate, completionHandler: { (currentWeather, darkSkyError) in
-                dispatchGroup.leave()
-                
-                guard let currentWeather = currentWeather else {
-                    error = darkSkyError
-                    return
-                }
-                
-                
-                let currentWeatherViewModel = CurrentWeatherViewModel(from: currentWeather, location: location)
-                self.currentWeatherViewModels.append(currentWeatherViewModel)
-            })
-        }
-        
-        dispatchGroup.notify(queue: .main) {
+        weatherManager.fetchWeather(with: self.locations) { (currentWeatherViewModels, error) in
             self.stopActivityIndicator()
+            
+            self.currentWeatherViewModels = currentWeatherViewModels
             
             if error != nil {
                 self.disableCollectionView()
@@ -196,7 +145,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         let currentWeatherViewModel = currentWeatherViewModels[indexPath.row]
         homeWeatherDisplayCellObject.configure(viewModel: currentWeatherViewModel)
         
-        // Calculate CellHeight based on passed viewModel
+        // Calculate CellHeight based on configured viewModel
         let cellHeight = homeWeatherDisplayCellObject.preferredLayoutSizeFittingSize(targetSize: CGSize(width: self.view.frame.width, height: 0)).height
         
         if cellHeight <= 0 {

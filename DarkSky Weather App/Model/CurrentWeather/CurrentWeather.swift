@@ -16,10 +16,10 @@ enum WeatherKeys: String {
 }
 
 struct CurrentWeather {
-    let temperature: Double!
-    let humidity: Double!
-    let precipProbability: Double!
-    let summary: String!
+    let temperature: Double
+    let humidity: Double
+    let precipProbability: Double
+    let summary: String
     
     init?(json: [String: AnyObject]) {
         guard let tempValue = json[WeatherKeys.temperature.rawValue] as? Double, let humidityValue = json[WeatherKeys.humidity.rawValue] as? Double, let precipProbabilityValue = json[WeatherKeys.precipProbability.rawValue] as? Double, let summaryValue = json[WeatherKeys.summary.rawValue] as? String else {

@@ -10,5 +10,5 @@ import Foundation
 
 class DarkSkyAPI {
     // Include your API key here
-    static let apiKey = ""
+    static let apiKey = "a7f709f85926a3b215a7072af9d54402"
 }
