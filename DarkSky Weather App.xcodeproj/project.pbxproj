@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0655436020D4223800885520 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0655435F20D4223800885520 /* LocationManager.swift */; };
 		0655436220D4301D00885520 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0655436120D4301D00885520 /* WeatherManager.swift */; };
+		0655436520D43F7C00885520 /* UIViewController+displayAlertTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0655436420D43F7C00885520 /* UIViewController+displayAlertTitle.swift */; };
 		06AD23EB20CC789300D9DA22 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AD23EA20CC789300D9DA22 /* AppDelegate.swift */; };
 		06AD23ED20CC789300D9DA22 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AD23EC20CC789300D9DA22 /* ViewController.swift */; };
 		06AD23F020CC789300D9DA22 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06AD23EE20CC789300D9DA22 /* Main.storyboard */; };
@@ -29,6 +30,7 @@
 /* Begin PBXFileReference section */
 		0655435F20D4223800885520 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		0655436120D4301D00885520 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
+		0655436420D43F7C00885520 /* UIViewController+displayAlertTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+displayAlertTitle.swift"; sourceTree = "<group>"; };
 		06AD23E720CC789300D9DA22 /* DarkSky Weather App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DarkSky Weather App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		06AD23EA20CC789300D9DA22 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06AD23EC20CC789300D9DA22 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -68,6 +70,14 @@
 			path = Location;
 			sourceTree = "<group>";
 		};
+		0655436320D43F6600885520 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0655436420D43F7C00885520 /* UIViewController+displayAlertTitle.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		06AD23DE20CC789300D9DA22 = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +97,7 @@
 		06AD23E920CC789300D9DA22 /* DarkSky Weather App */ = {
 			isa = PBXGroup;
 			children = (
+				0655436320D43F6600885520 /* Extensions */,
 				06AD240420CD5B1500D9DA22 /* Networking */,
 				06AD240220CD5ADC00D9DA22 /* Model */,
 				06AD23FC20CCA42C00D9DA22 /* CellNib */,
@@ -240,6 +251,7 @@
 				06AD240A20CD5CAB00D9DA22 /* DarkSkyAPIClient.swift in Sources */,
 				0655436020D4223800885520 /* LocationManager.swift in Sources */,
 				06AD23EB20CC789300D9DA22 /* AppDelegate.swift in Sources */,
+				0655436520D43F7C00885520 /* UIViewController+displayAlertTitle.swift in Sources */,
 				06AD241720CDC07100D9DA22 /* Location.swift in Sources */,
 				06AD240820CD5BCD00D9DA22 /* DarkSkyError.swift in Sources */,
 			);
